@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Container, Row, Col, Form, InputGroup } from "react-bootstrap";
 import "./styles.css";
 
 const MachineData: React.FC = () => {
@@ -23,14 +21,14 @@ const MachineData: React.FC = () => {
 
   return (
     <Container>
-      <form className="leaseForm">
+      <Form className="leaseForm">
         <Row>
-          <div>Kloppen de gegevens nog?</div>
+          <div className="leaseForm-header">Kloppen de gegevens nog?</div>
         </Row>
         <Row>
           <Col className="col">
-            <label>Merk</label>
-            <input
+            <Form.Label>Merk</Form.Label>
+            <Form.Control
               type="text"
               name="merk"
               value={inputs.merk || ""}
@@ -38,8 +36,8 @@ const MachineData: React.FC = () => {
             />
           </Col>
           <Col className="col">
-            <label>Model</label>
-            <input
+            <Form.Label>Model</Form.Label>
+            <Form.Control
               type="text"
               name="model"
               value={inputs.model || ""}
@@ -49,12 +47,13 @@ const MachineData: React.FC = () => {
         </Row>
         <Row>
           <Col className="col">
-            <label>Bouwjaar</label>
-            <select
+            <Form.Label>Bouwjaar</Form.Label>
+            <Form.Select
               name="jaar"
               value={inputs.jaar || ''}
               onChange={handleChange}
             >
+              <option>Selecteer bouwjaar</option>
               <option value="2016">2016</option>
               <option value="2017">2017</option>
               <option value="2018">2018</option>
@@ -63,81 +62,75 @@ const MachineData: React.FC = () => {
               <option value="2021">2021</option>
               <option value="2022">2022</option>
               <option value="2023">2023</option>
-            </select>
+            </Form.Select>
           </Col>
           <Col className="col">
-            <label>Conditie</label>
+            <Form.Label>Conditie</Form.Label>
             <div className="radio">
-              <label>
-                <input
+                <Form.Check
                   type="radio"
                   value="gebruikt"
                   name="conditie"
+                  label="gebruikt"
                   checked={inputs.conditie === 'gebruikt'}
                   onChange={handleChange}
                 />
-                Gebruikt
-              </label>
-              <label>
-                <input
+                <Form.Check
                   type="radio"
                   value="nieuw"
                   name="conditie"
+                  label="nieuw"
                   checked={inputs.conditie === 'nieuw'}
                   onChange={handleChange}
                 />
-                Nieuw
-              </label>
             </div>
           </Col>
         </Row>
         <Row>
           <Col className="col">
-            <label>Aanschafwaarde</label>
-            <input
+            <Form.Label>Aanschafwaarde</Form.Label>
+            <InputGroup>
+            <InputGroup.Text>€</InputGroup.Text>
+            <Form.Control
               type="text"
               name="waarde"
               value={inputs.waarde || ''}
               onChange={handleChange}
             />
+            </InputGroup>
+            
           </Col>
           <Col className="col">
-            <label>Leasevorm</label>
+            <Form.Label>Leasevorm</Form.Label>
             <div className="radio">
-              <label>
-                <input
+                <Form.Check
                   type="radio"
                   value="financial"
                   name="leasevorm"
+                  label="Financial"
                   checked={inputs.leasevorm === 'financial'}
                   onChange={handleChange}
                 />
-                Financial
-              </label>
-              <label>
-                <input
+                <Form.Check
                   type="radio"
                   value="operational"
                   name="leasevorm"
+                  label="Operational"
                   checked={inputs.leasevorm === 'operational'}
                   onChange={handleChange}
                 />
-                Operational
-              </label>
-              <label>
-                <input
+                <Form.Check
                   type="radio"
                   value="saleleaseback"
                   name="leasevorm"
+                  label="Sale & Leaseback"
                   checked={inputs.leasevorm === 'saleleaseback'}
                   onChange={handleChange}
                 />
-                Sale & Leaseback
-              </label>
             </div>
           </Col>
         </Row>
-      </form>
+      </Form>
     </Container>
   );
 };

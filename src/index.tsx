@@ -6,6 +6,9 @@ import App from './App';
 // Importing the Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+//importing font
+import './assets/fonts/Gotham-Font/GothamBook.ttf'
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
