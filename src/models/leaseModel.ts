@@ -17,14 +17,14 @@ export interface MachineData {
 }
 
 export enum MachineConditionStatus {
-  Gebruikt,
-  Nieuw,
+  Gebruikt = 'gebruikt',
+  Nieuw = 'nieuw',
 }
 
 export enum MachineLeaseForm {
-  Financial,
-  Operational,
-  SaleLeaseBack,
+  Financial = 'financial',
+  Operational = 'operational',
+  SaleLeaseBack = 'saleleaseback',
 }
 
 export interface Milage {

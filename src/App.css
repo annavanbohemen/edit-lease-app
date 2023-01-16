@@ -25,8 +25,14 @@
   justify-content: center;
 }
 
+.steps {
+  width: 100%;
+}
+
 .steps ul {
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .steps ul li {
@@ -34,7 +40,7 @@
   position: relative;
   margin: 5px;
   background: #E5E6E7;
-  width: 165px;
+  width: 200px;
 }
 
 .steps ul li.active{
@@ -43,4 +49,8 @@
 
 .steps ul li.done{
   background: #ffa100;
+}
+
+.step-component{
+  width: 95%;
 }

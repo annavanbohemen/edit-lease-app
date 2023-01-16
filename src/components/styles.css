@@ -1,0 +1,13 @@
+.leaseForm {
+  width: 100%;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio {
+  display: flex;
+  flex-direction: row;
+}

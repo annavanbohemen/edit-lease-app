@@ -3,43 +3,53 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./App.css";
 import logo from "./assets/logo-beequip.svg";
-
-const firstComponent = () => {
-  return <div>First Component</div>;
-};
-const secondComponent = () => {
-  return <div>Second Component</div>;
-};
-const thirdComponent = () => {
-  return <div>Third Component</div>;
-};
-const fourthComponent = () => {
-  return <div>Final Component</div>;
-};
-const fifthComponent = () => {
-  return <div>Final Component</div>;
-};
+import MachineData from "./components/MachineData";
 
 const App: React.FC = () => {
   const [show, setShow] = useState(false);
   const [steps, setSteps] = useState([
-    { key: "1", label: "MachineData", isDone: true, component: firstComponent },
-    { key: "1.1", label: "Milage", isDone: false, component: firstComponent },
-    { key: "2", label: "Supplier", isDone: false, component: secondComponent },
-    { key: "3", label: "Rental", isDone: false, component: thirdComponent },
+    {
+      key: "1",
+      label: "MachineData",
+      isDone: false,
+      component: () => {
+        return <MachineData />;
+      },
+    },
+    {
+      key: "2",
+      label: "Supplier",
+      isDone: false,
+      component: () => {
+        return <div>supplierComponent</div>;
+      },
+    },
+    {
+      key: "3",
+      label: "Rental",
+      isDone: false,
+      component: () => {
+        return <div>RentalComponent</div>;
+      },
+    },
     {
       key: "4",
       label: "lease details",
       isDone: false,
-      component: fourthComponent,
+      component: () => {
+        return <div>LeaseDetailsComponent</div>;
+      },
     },
     {
       key: "5",
       label: "VATfinancing",
       isDone: false,
-      component: fifthComponent,
+      component: () => {
+        return <div>VATfinancingComponent</div>;
+      },
     },
   ]);
+  
   const [activeStep, setActiveStep] = useState(steps[0]);
 
   const handleClose = () => setShow(false);
