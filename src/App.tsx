@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./App.css";
 import logo from "./assets/logo-beequip.svg";
+import arrow from "./assets/chevron-left.png"
 import LeaseDetailsData from "./components/LeaseDetailsData";
 import MachineData from "./components/MachineData";
 import MilageData from "./components/MilageData";
@@ -101,15 +102,15 @@ const App: React.FC = () => {
   });
 
   const [activeStep, setActiveStep] = useState<Step>(stepsArray[0]);
-  const [finish, setFinish] = useState<boolean>(false)
-  const [width, setWidth] = useState<string>('0px')
-  const ref = useRef<HTMLUListElement>(null)
+  const [finish, setFinish] = useState<boolean>(false);
+  const [width, setWidth] = useState<string>("0px");
+  const ref = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    const ulWidth = ref.current ? ref.current.offsetWidth : 0
-    const numberOfSteps = steps.length
-    const number = ((ulWidth/numberOfSteps) - 10).toString()
-    setWidth(number + 'px')
+    const ulWidth = ref.current ? ref.current.offsetWidth : 0;
+    const numberOfSteps = steps.length;
+    const number = (ulWidth / numberOfSteps - 10).toString();
+    setWidth(number + "px");
   });
 
   const handleClose = () => setShow(false);
@@ -159,25 +160,25 @@ const App: React.FC = () => {
       arr.splice(remove[i], 1);
     }
 
-    for(let i = 0; i < arr.length; i++){
-      const key = i + 1
-      arr[i].key = key.toString()
+    for (let i = 0; i < arr.length; i++) {
+      const key = i + 1;
+      arr[i].key = key.toString();
     }
     return arr;
   };
 
   const handleNext = () => {
-    if(steps[0]){
-    UpdateSteps();
+    if (steps[0]) {
+      UpdateSteps();
     }
 
-    if(steps[steps.length - 1].key === activeStep.key){
-      setFinish(true)
+    if (steps[steps.length - 2].key === activeStep.key) {
+      setFinish(true);
     }
 
     if (steps[steps.length - 1].key === activeStep.key) {
-      alert("de lease data wordt opgeslagen")
-      console.log("lease", lease)
+      alert("de lease data wordt opgeslagen");
+      console.log("lease", lease);
       return;
     }
 
@@ -191,6 +192,11 @@ const App: React.FC = () => {
     setActiveStep(steps[index + 1]);
   };
 
+  const handlePrevious = () => {
+    const index = steps.findIndex((x) => x.key === activeStep.key);
+    setActiveStep(steps[index -1])
+  }
+
   return (
     <div className="App">
       <header className="heading">
@@ -202,8 +208,10 @@ const App: React.FC = () => {
         </Button>
 
         <Modal show={show} onHide={handleClose} dialogClassName="leaseModel">
-          <Modal.Header closeButton className="border-0">
-            <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Header closeButton className="border-0 modelHeader">
+            <Modal.Title>
+              {activeStep.key}. {lease.machineData.naam}
+              </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="container">
@@ -211,7 +219,8 @@ const App: React.FC = () => {
                 <ul className="nav" ref={ref}>
                   {steps.map((step, i) => {
                     return (
-                      <li style={{width: width}}
+                      <li
+                        style={{ width: width }}
                         key={i}
                         className={`${
                           activeStep.key === step.key ? "active" : ""
@@ -227,9 +236,18 @@ const App: React.FC = () => {
             </div>
             <hr />
             <div className="button-container">
+              {activeStep.key === '1' || finish ? (
+                ""
+              ) : (
+                <Button variant="outline-dark" className="buttonPrev" onClick={handlePrevious}>
+                   <img src={arrow} className="back-arrow" alt="back-arrow" />
+                   Vorige
+                </Button>
+              )}
+
               <Button variant="dark" onClick={handleNext}>
-              {finish ? ('opslaan') : ('volgende')}
-            </Button>
+                {finish ? "opslaan" : "volgende"}
+              </Button>
             </div>
           </Modal.Body>
         </Modal>
