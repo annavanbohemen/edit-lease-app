@@ -15,7 +15,6 @@ const MachineData: React.FC<Props> = ({ lease, setLease }) => {
     const target = event.target as HTMLTextAreaElement;
     const name = target.name;
     const value = target.value;
-    console.log(name, "&", value);
     setInputs((values) => ({ ...values, [name]: value }));
     setLease((values) => ({
       ...values,
