@@ -54,3 +54,8 @@
 .step-component{
   width: 95%;
 }
+
+.button-container{
+  display: flex;
+  justify-content: flex-end;
+}

@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, InputGroup } from "react-bootstrap";
 import "./styles.css";
 
-const MachineData: React.FC = () => {
+interface Props {
+  //LeaseData: 
+}
+
+const MachineData: React.FC<Props> = ({}) => {
   const [inputs, setInputs] = useState({
     merk: "",
     model: "",
-    jaar: '',
-    waarde: '',
-    conditie: 'gebruikt',
-    leasevorm: 'financial',
+    jaar: "",
+    waarde: "",
+    conditie: "gebruikt",
+    leasevorm: "financial",
   });
 
   const handleChange = (event: React.ChangeEvent) => {
@@ -20,8 +24,8 @@ const MachineData: React.FC = () => {
   };
 
   return (
-    <Container>
-      <Form className="leaseForm">
+    <Form className="leaseForm">
+      <Container>
         <Row>
           <div className="leaseForm-header">Kloppen de gegevens nog?</div>
         </Row>
@@ -50,7 +54,7 @@ const MachineData: React.FC = () => {
             <Form.Label>Bouwjaar</Form.Label>
             <Form.Select
               name="jaar"
-              value={inputs.jaar || ''}
+              value={inputs.jaar || ""}
               onChange={handleChange}
             >
               <option>Selecteer bouwjaar</option>
@@ -67,22 +71,22 @@ const MachineData: React.FC = () => {
           <Col className="col">
             <Form.Label>Conditie</Form.Label>
             <div className="radio">
-                <Form.Check
-                  type="radio"
-                  value="gebruikt"
-                  name="conditie"
-                  label="gebruikt"
-                  checked={inputs.conditie === 'gebruikt'}
-                  onChange={handleChange}
-                />
-                <Form.Check
-                  type="radio"
-                  value="nieuw"
-                  name="conditie"
-                  label="nieuw"
-                  checked={inputs.conditie === 'nieuw'}
-                  onChange={handleChange}
-                />
+              <Form.Check
+                type="radio"
+                value="gebruikt"
+                name="conditie"
+                label="gebruikt"
+                checked={inputs.conditie === "gebruikt"}
+                onChange={handleChange}
+              />
+              <Form.Check
+                type="radio"
+                value="nieuw"
+                name="conditie"
+                label="nieuw"
+                checked={inputs.conditie === "nieuw"}
+                onChange={handleChange}
+              />
             </div>
           </Col>
         </Row>
@@ -90,48 +94,47 @@ const MachineData: React.FC = () => {
           <Col className="col">
             <Form.Label>Aanschafwaarde</Form.Label>
             <InputGroup>
-            <InputGroup.Text>€</InputGroup.Text>
-            <Form.Control
-              type="text"
-              name="waarde"
-              value={inputs.waarde || ''}
-              onChange={handleChange}
-            />
+              <InputGroup.Text>€</InputGroup.Text>
+              <Form.Control
+                type="text"
+                name="waarde"
+                value={inputs.waarde || ""}
+                onChange={handleChange}
+              />
             </InputGroup>
-            
           </Col>
           <Col className="col">
             <Form.Label>Leasevorm</Form.Label>
             <div className="radio">
-                <Form.Check
-                  type="radio"
-                  value="financial"
-                  name="leasevorm"
-                  label="Financial"
-                  checked={inputs.leasevorm === 'financial'}
-                  onChange={handleChange}
-                />
-                <Form.Check
-                  type="radio"
-                  value="operational"
-                  name="leasevorm"
-                  label="Operational"
-                  checked={inputs.leasevorm === 'operational'}
-                  onChange={handleChange}
-                />
-                <Form.Check
-                  type="radio"
-                  value="saleleaseback"
-                  name="leasevorm"
-                  label="Sale & Leaseback"
-                  checked={inputs.leasevorm === 'saleleaseback'}
-                  onChange={handleChange}
-                />
+              <Form.Check
+                type="radio"
+                value="financial"
+                name="leasevorm"
+                label="Financial"
+                checked={inputs.leasevorm === "financial"}
+                onChange={handleChange}
+              />
+              <Form.Check
+                type="radio"
+                value="operational"
+                name="leasevorm"
+                label="Operational"
+                checked={inputs.leasevorm === "operational"}
+                onChange={handleChange}
+              />
+              <Form.Check
+                type="radio"
+                value="saleleaseback"
+                name="leasevorm"
+                label="Sale & Leaseback"
+                checked={inputs.leasevorm === "saleleaseback"}
+                onChange={handleChange}
+              />
             </div>
           </Col>
         </Row>
-      </Form>
-    </Container>
+      </Container>
+    </Form>
   );
 };
 

@@ -3,11 +3,16 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "./App.css";
 import logo from "./assets/logo-beequip.svg";
+import LeaseDetailsData from "./components/LeaseDetailsData";
 import MachineData from "./components/MachineData";
+import RentalData from "./components/RentalData";
+import SupplierData from "./components/SupplierData";
+import VatFinData from "./components/VatFinData";
+import { Step } from "./models/stepsModel";
 
 const App: React.FC = () => {
-  const [show, setShow] = useState(false);
-  const [steps, setSteps] = useState([
+  const [show, setShow] = useState<boolean>(false);
+  const [steps, setSteps] = useState<Step[]>([
     {
       key: "1",
       label: "MachineData",
@@ -21,7 +26,7 @@ const App: React.FC = () => {
       label: "Supplier",
       isDone: false,
       component: () => {
-        return <div>supplierComponent</div>;
+        return <SupplierData />;
       },
     },
     {
@@ -29,7 +34,7 @@ const App: React.FC = () => {
       label: "Rental",
       isDone: false,
       component: () => {
-        return <div>RentalComponent</div>;
+        return <RentalData />;
       },
     },
     {
@@ -37,7 +42,7 @@ const App: React.FC = () => {
       label: "lease details",
       isDone: false,
       component: () => {
-        return <div>LeaseDetailsComponent</div>;
+        return <LeaseDetailsData />;
       },
     },
     {
@@ -45,12 +50,12 @@ const App: React.FC = () => {
       label: "VATfinancing",
       isDone: false,
       component: () => {
-        return <div>VATfinancingComponent</div>;
+        return <VatFinData />;
       },
     },
   ]);
-  
-  const [activeStep, setActiveStep] = useState(steps[0]);
+
+  const [activeStep, setActiveStep] = useState<Step>(steps[0]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -82,7 +87,7 @@ const App: React.FC = () => {
         </Button>
 
         <Modal show={show} onHide={handleClose} dialogClassName="leaseModel">
-          <Modal.Header closeButton>
+          <Modal.Header closeButton className="border-0">
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -103,15 +108,15 @@ const App: React.FC = () => {
                   })}
                 </ul>
               </div>
-
               <div className="step-component">{activeStep.component()}</div>
             </div>
+            <hr />
+            <div className="button-container">
+              <Button variant="dark" onClick={handleNext}>
+                volgende
+              </Button>
+            </div>
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="primary" onClick={handleNext}>
-              volgende
-            </Button>
-          </Modal.Footer>
         </Modal>
       </div>
     </div>

@@ -1,0 +1,17 @@
+import React from "react";
+import "./styles.css";
+
+interface Props {
+    //LeaseData: 
+}
+
+const LeaseDetailData: React.FC<Props> = ({}) => {
+
+  return (
+    <div className="leaseForm">
+        LeaseDetail data form
+    </div>
+  );
+};
+
+export default LeaseDetailData;
