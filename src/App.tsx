@@ -8,17 +8,49 @@ import MachineData from "./components/MachineData";
 import RentalData from "./components/RentalData";
 import SupplierData from "./components/SupplierData";
 import VatFinData from "./components/VatFinData";
+import { LeaseForm, MachineConditionStatus, MachineLeaseForm } from "./models/leaseModel";
 import { Step } from "./models/stepsModel";
 
 const App: React.FC = () => {
   const [show, setShow] = useState<boolean>(false);
+  const [lease, setLease] = useState<LeaseForm>(
+    {
+      machineData: {
+        naam: 'Scania R730 - Topline Hydroliek',
+        merk: 'Scania',
+        model: 'R730',
+        jaar: '2022',
+        waarde: '120.000',
+        conditie: MachineConditionStatus.Gebruikt,
+        leasevorm: MachineLeaseForm.Financial
+      },
+      supplier: {
+        supplierName: '',
+      },
+      rental: {
+        ableToRent: true,
+      },
+      LeaseDetails: {
+        deposit: 0,
+        finalTerm: 0,
+        duration: 0,
+      },
+      VATfinancing: {
+        SpreadPayments: true,
+      },
+      milage: {
+        presentMilage: true,
+        milage: 0,
+      }
+    }
+  )
   const [steps, setSteps] = useState<Step[]>([
     {
       key: "1",
       label: "MachineData",
       isDone: false,
       component: () => {
-        return <MachineData />;
+        return <MachineData lease={lease} setLease={setLease}/>;
       },
     },
     {
@@ -61,6 +93,7 @@ const App: React.FC = () => {
   const handleShow = () => setShow(true);
 
   const handleNext = () => {
+    console.log('lease', lease)
     if (steps[steps.length - 1].key === activeStep.key) {
       alert("you have completed all steps");
       return;

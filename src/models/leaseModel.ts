@@ -8,10 +8,11 @@ export interface LeaseForm {
 }
 
 export interface MachineData {
+  naam: string;
   merk: string;
   model: string;
-  jaar: number;
-  waarde: number;
+  jaar: string;
+  waarde: string;
   conditie: MachineConditionStatus;
   leasevorm: MachineLeaseForm;
 }

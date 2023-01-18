@@ -1,26 +1,29 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, InputGroup } from "react-bootstrap";
+import { LeaseForm } from "../models/leaseModel";
 import "./styles.css";
 
 interface Props {
-  //LeaseData: 
+  lease: LeaseForm;
+  setLease: React.Dispatch<React.SetStateAction<LeaseForm>>;
 }
 
-const MachineData: React.FC<Props> = ({}) => {
-  const [inputs, setInputs] = useState({
-    merk: "",
-    model: "",
-    jaar: "",
-    waarde: "",
-    conditie: "gebruikt",
-    leasevorm: "financial",
-  });
+const MachineData: React.FC<Props> = ({ lease, setLease }) => {
+  const [inputs, setInputs] = useState(lease.machineData);
 
   const handleChange = (event: React.ChangeEvent) => {
     const target = event.target as HTMLTextAreaElement;
     const name = target.name;
     const value = target.value;
+    console.log(name, "&", value);
     setInputs((values) => ({ ...values, [name]: value }));
+    setLease((values) => ({
+      ...values,
+      machineData: {
+        ...values.machineData,
+        [name]: value,
+      },
+    }));
   };
 
   return (
