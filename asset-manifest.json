@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/edit-lease-app/static/css/main.d1d4fedd.css",
+    "main.js": "/edit-lease-app/static/js/main.309bf949.js",
+    "static/media/GothamBook.ttf": "/edit-lease-app/static/media/GothamBook.58fb9151c57e59668f17.ttf",
+    "static/media/logo-beequip.svg": "/edit-lease-app/static/media/logo-beequip.a5342fbaa1b2e07d2f843a7e8c11cda9.svg",
+    "index.html": "/edit-lease-app/index.html",
+    "main.d1d4fedd.css.map": "/edit-lease-app/static/css/main.d1d4fedd.css.map",
+    "main.309bf949.js.map": "/edit-lease-app/static/js/main.309bf949.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d1d4fedd.css",
+    "static/js/main.309bf949.js"
+  ]
+}
