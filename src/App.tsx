@@ -101,7 +101,7 @@ const App: React.FC = () => {
   });
 
   const [activeStep, setActiveStep] = useState<Step>(stepsArray[0]);
-
+  const [finish, setFinish] = useState<boolean>(false)
   const [width, setWidth] = useState<string>('0px')
   const ref = useRef<HTMLUListElement>(null)
 
@@ -167,17 +167,24 @@ const App: React.FC = () => {
   };
 
   const handleNext = () => {
-    console.log("lease", lease);
+    if(steps[0]){
     UpdateSteps();
+    }
+
+    if(steps[steps.length - 1].key === activeStep.key){
+      setFinish(true)
+    }
+
     if (steps[steps.length - 1].key === activeStep.key) {
-      alert("you have completed all steps");
+      alert("de lease data wordt opgeslagen")
+      console.log("lease", lease)
       return;
     }
 
     const index = steps.findIndex((x) => x.key === activeStep.key);
     setSteps((prevStep) =>
       prevStep.map((x) => {
-        if (x.key === activeStep.key) x.isDone = true;
+        if (x.key <= activeStep.key) x.isDone = true;
         return x;
       })
     );
@@ -221,8 +228,8 @@ const App: React.FC = () => {
             <hr />
             <div className="button-container">
               <Button variant="dark" onClick={handleNext}>
-                volgende
-              </Button>
+              {finish ? ('opslaan') : ('volgende')}
+            </Button>
             </div>
           </Modal.Body>
         </Modal>
